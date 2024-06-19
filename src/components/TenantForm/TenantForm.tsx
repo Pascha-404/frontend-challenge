@@ -1,6 +1,18 @@
+'use client';
+
+import { TSalary, useFormStore } from '@/store/useFormStore';
 import React from 'react';
 
 const TenantForm = () => {
+	const { fullName, email, phoneNumber, salary } = useFormStore(state => state.formData);
+	const salaryOptions: TSalary[] = [
+		'0-1000',
+		'1000-2000',
+		'2000-3000',
+		'3000-4000',
+		'>4000',
+	];
+
 	return (
 		<form>
 			{' '}
@@ -23,6 +35,7 @@ const TenantForm = () => {
 										name='fullName'
 										id='fullName'
 										required
+										value={fullName}
 										autoComplete='fullName'
 										className='block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6'
 										placeholder='z.B. Maxima Mustermann'
@@ -53,6 +66,7 @@ const TenantForm = () => {
 										type='email'
 										name='email'
 										id='email'
+										value={email}
 										required
 										autoComplete='email'
 										className='block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6'
@@ -82,6 +96,7 @@ const TenantForm = () => {
 										name='phoneNumber'
 										id='phoneNumber'
 										required
+										value={phoneNumber}
 										autoComplete='phoneNumber'
 										className='block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6'
 										placeholder='z.B. 0151 XXXX XXX'
@@ -102,26 +117,33 @@ const TenantForm = () => {
 
 					<div className='mt-10 space-y-10'>
 						<fieldset>
-							<div className='mt-6 space-y-6'>
-								<div className='h-full w-full flex items-center justify-between gap-x-3 border-2 rounded-xl shadow-sm  hover:border-black focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md px-3 py-1.5'>
-									<label
-										htmlFor='push-everything'
-										className='cursor-pointer w-full block text-sm font-medium leading-6 text-gray-900'>
-										Everything
-									</label>
-									<input
-										id='push-everything'
-										name='push-notifications'
-                                        type='radio'
-										className='cursor-pointer h-4'
-									/>
-								</div>
+							<legend className='mt-6 block text-sm font-normal leading-tight text-stone-600 dark:text-neutral-300'>
+								Einkommen auswählen
+							</legend>
+
+							<div className='space-y-6'>
+								{salaryOptions.map((item, idx) => (
+									<div className='mt-2 h-full w-full flex items-center justify-between gap-x-3 border-2 rounded-xl shadow-sm  hover:border-black focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md px-3 py-1.5'>
+										<label
+											htmlFor={`salaryItem-${idx}`}
+											className='cursor-pointer w-full block text-sm font-medium leading-6 text-gray-900'>
+											{item.replace(/-/g, ' - ').replace(/>/g, 'Mehr als ')}€
+										</label>
+										<input
+											id={`salaryItem-${idx}`}
+											name='salary'
+											type='radio'
+											value={item}
+											checked={salary === item}
+											className='cursor-pointer h-4'
+										/>
+									</div>
+								))}
 							</div>
 						</fieldset>
 					</div>
 				</div>
-            </div>
-            
+			</div>
 			<div className='mt-6 flex items-center justify-end gap-x-6'>
 				<button type='button' className='text-sm font-semibold leading-6 text-gray-900'>
 					Zurück
