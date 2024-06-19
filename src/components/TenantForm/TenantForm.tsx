@@ -4,7 +4,9 @@ import { TSalary, useFormStore } from '@/store/useFormStore';
 import React from 'react';
 
 const TenantForm = () => {
+	const page = useFormStore(state => state.page);
 	const { fullName, email, phoneNumber, salary } = useFormStore(state => state.formData);
+	const setFormData = useFormStore(state => state.setFormData);
 	const salaryOptions: TSalary[] = [
 		'0-1000',
 		'1000-2000',
@@ -13,9 +15,12 @@ const TenantForm = () => {
 		'>4000',
 	];
 
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setFormData({ [event.target.name]: event.target.value });
+	};
+
 	return (
 		<form>
-			{' '}
 			<div className='space-y-12'>
 				<div className='border-b border-gray-900/10 pb-12'>
 					<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>
@@ -35,6 +40,7 @@ const TenantForm = () => {
 										name='fullName'
 										id='fullName'
 										required
+										onChange={handleChange}
 										value={fullName}
 										autoComplete='fullName'
 										className='block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6'
@@ -68,6 +74,7 @@ const TenantForm = () => {
 										id='email'
 										value={email}
 										required
+										onChange={handleChange}
 										autoComplete='email'
 										className='block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6'
 										placeholder='z.B. M.Mustermann@gmail.com'
@@ -96,6 +103,7 @@ const TenantForm = () => {
 										name='phoneNumber'
 										id='phoneNumber'
 										required
+										onChange={handleChange}
 										value={phoneNumber}
 										autoComplete='phoneNumber'
 										className='block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6'
@@ -123,7 +131,9 @@ const TenantForm = () => {
 
 							<div className='space-y-6'>
 								{salaryOptions.map((item, idx) => (
-									<div className='mt-2 h-full w-full flex items-center justify-between gap-x-3 border-2 rounded-xl shadow-sm  hover:border-black focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md px-3 py-1.5'>
+									<div
+										key={`salaryItem-${idx}`}
+										className='mt-2 h-full w-full flex items-center justify-between gap-x-3 border-2 rounded-xl shadow-sm  hover:border-black focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md px-3 py-1.5'>
 										<label
 											htmlFor={`salaryItem-${idx}`}
 											className='cursor-pointer w-full block text-sm font-medium leading-6 text-gray-900'>
@@ -133,6 +143,7 @@ const TenantForm = () => {
 											id={`salaryItem-${idx}`}
 											name='salary'
 											type='radio'
+											onChange={handleChange}
 											value={item}
 											checked={salary === item}
 											className='cursor-pointer h-4'
