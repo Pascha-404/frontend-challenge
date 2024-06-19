@@ -34,6 +34,7 @@ const TenantForm = () => {
 	return (
 		<form>
 			<div className='space-y-12'>
+				{/* Code block for name page */}
 				{page === 0 && (
 					<div className='border-b border-gray-900/10 pb-12'>
 						<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>
@@ -66,6 +67,7 @@ const TenantForm = () => {
 					</div>
 				)}
 
+				{/* Code block for email page */}
 				{page === 1 && (
 					<div className='border-b border-gray-900/10 pb-12'>
 						<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>
@@ -101,6 +103,7 @@ const TenantForm = () => {
 					</div>
 				)}
 
+				{/* Code block for phone number page */}
 				{page === 2 && (
 					<div className='border-b border-gray-900/10 pb-12'>
 						<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>
@@ -133,6 +136,7 @@ const TenantForm = () => {
 					</div>
 				)}
 
+				{/* Code block for salary indication page */}
 				{page === 3 && (
 					<div className='border-b border-gray-900/10 pb-12'>
 						<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>
@@ -176,6 +180,7 @@ const TenantForm = () => {
 				)}
 			</div>
 
+			{/* Code block for summary page */}
 			{page === 4 && (
 				<div>
 					<div className='px-4 sm:px-0'>
@@ -225,6 +230,7 @@ const TenantForm = () => {
 				</div>
 			)}
 
+			{/* Code block for buttons */}
 			<div className='mt-6 flex items-center justify-end gap-x-6'>
 				{/* Is not rendering when on page 0, to prevent falsie state value */}
 				{page !== 0 && (
