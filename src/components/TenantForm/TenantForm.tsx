@@ -16,14 +16,17 @@ const TenantForm = () => {
 		'>4000',
 	];
 
+	// Alters the value of the state which is provided through event.target.name
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({ [event.target.name]: event.target.value });
 	};
 
+	// Takes the 'page' state and increments it by 1
 	const nextPage = () => {
 		setPage((page += 1));
 	};
 
+	// Takes the 'page' state and decrements it by 1
 	const prevPage = () => {
 		setPage((page -= 1));
 	};
@@ -173,6 +176,7 @@ const TenantForm = () => {
 				)}
 			</div>
 			<div className='mt-6 flex items-center justify-end gap-x-6'>
+				{/* Is not rendering when on page 0, to prevent falsie state value */}
 				{page !== 0 && (
 					<button
 						type='button'
