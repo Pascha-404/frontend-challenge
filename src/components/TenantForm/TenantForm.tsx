@@ -1,13 +1,14 @@
 'use client';
 
+import React, { useState, useEffect } from 'react';
 import { TSalary, useFormStore } from '@/store/useFormStore';
-import React from 'react';
 
 const TenantForm = () => {
 	let page = useFormStore(state => state.page);
 	const { fullName, email, phoneNumber, salary } = useFormStore(state => state.formData);
 	const setFormData = useFormStore(state => state.setFormData);
 	const setPage = useFormStore(state => state.setPage);
+	const [isPageValid, setIsPageValid] = useState(false);
 	const salaryOptions: TSalary[] = [
 		'0-1000',
 		'1000-2000',
@@ -30,6 +31,19 @@ const TenantForm = () => {
 	const prevPage = () => {
 		setPage((page -= 1));
 	};
+
+	useEffect(() => {
+		//Validate current page inputs
+		if (page === 0) {
+			setIsPageValid(!!fullName);
+		} else if (page === 1) {
+			setIsPageValid(!!email);
+		} else if (page === 2) {
+			setIsPageValid(!!phoneNumber);
+		} else if (page === 3) {
+			setIsPageValid(!!salary);
+		}
+	}, [fullName, email, phoneNumber, salary, page]);
 
 	return (
 		<form>
@@ -244,7 +258,8 @@ const TenantForm = () => {
 				<button
 					onClick={nextPage}
 					type='button'
-					className='rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+					disabled={!isPageValid}
+					className='rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-stone-500 disabled:cursor-not-allowed'>
 					{page === 4 ? 'Absenden' : page === 3 ? 'Zusammenfassung' : 'Weiter'}
 				</button>
 			</div>
