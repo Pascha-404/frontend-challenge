@@ -176,7 +176,10 @@ const TenantForm = () => {
 			)}
 
 			{/* Code block for buttons */}
-			<div className='mt-6 flex items-center justify-end gap-x-6'>
+			<div
+				className={`w-full mt-6 flex items-center gap-x-6 ${
+					page !== 0 ? 'justify-between' : 'justify-end'
+				}`}>
 				{/* Is not rendering when on page 0, to prevent falsie state value */}
 				{page !== 0 && (
 					<button
