@@ -46,7 +46,7 @@ const TenantForm = () => {
 	}, [fullName, email, phoneNumber, salary, page]);
 
 	return (
-		<form className='space-y-12 ring-1 p-12 ring-gray-200 rounded-3xl h-128 max-h-screen'>
+		<form className='flex flex-col space-y-12 ring-1 p-12 ring-gray-200 rounded-3xl min-h-208 max-h-screen justify-between'>
 			{/* Code block for name page */}
 			{page === 0 && (
 				<div className='pb-12'>
