@@ -169,7 +169,7 @@ const TenantForm = () => {
 								{salaryOptions.map((item, idx) => (
 									<div
 										key={`salaryItem-${idx}`}
-										className='mt-2 h-full w-full flex items-center justify-between gap-x-3 border-2 rounded-xl shadow-sm  hover:border-black focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md px-3 py-1.5'>
+										className='mt-2 h-full w-full flex items-center justify-between gap-x-3 border-2 rounded-xl shadow-sm  hover:border-black focus-within:ring-2 focus:outline-none focus-within:ring-inset focus-within:ring-black sm:max-w-md px-3 py-1.5'>
 										<label
 											htmlFor={`salaryItem-${idx}`}
 											className='cursor-pointer w-full block text-sm font-medium leading-6 text-gray-900'>
