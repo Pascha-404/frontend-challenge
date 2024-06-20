@@ -49,6 +49,14 @@ const TenantForm = () => {
 		}
 	};
 
+	// Data array of objects which get populated on the summary page
+	const summary = [
+		{ dataName: 'Vollständiger Name', dataValue: fullName },
+		{ dataName: 'E-Mail Adresse', dataValue: email },
+		{ dataName: 'Telefonnummer', dataValue: phoneNumber },
+		{ dataName: 'Gehaltsangabe', dataValue: transformSalaryText(salary) },
+	];
+
 	useEffect(() => {
 		//Validate current page inputs
 		if (page === 0) {
@@ -138,38 +146,18 @@ const TenantForm = () => {
 					</div>
 					<div className='mt-6 border-t border-gray-100'>
 						<dl className='divide-y divide-gray-100'>
-							<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-								<dt className='text-sm font-medium leading-6 text-gray-900'>
-									Vollständiger Name
-								</dt>
-								<dd className='mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0'>
-									{fullName}
-								</dd>
-							</div>
-							<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-								<dt className='text-sm font-medium leading-6 text-gray-900'>
-									E-Mail Adresse
-								</dt>
-								<dd className='mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0'>
-									{email}
-								</dd>
-							</div>
-							<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-								<dt className='text-sm font-medium leading-6 text-gray-900'>
-									Telefonnummer
-								</dt>
-								<dd className='mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0'>
-									{phoneNumber}
-								</dd>
-							</div>
-							<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-								<dt className='text-sm font-medium leading-6 text-gray-900'>
-									Gehaltsangabe
-								</dt>
-								<dd className='mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0'>
-									{transformSalaryText(salary)}
-								</dd>
-							</div>
+							{summary.map((item, idx) => (
+								<div
+									key={`summaryItem-${idx}`}
+									className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
+									<dt className='text-sm font-medium leading-6 text-gray-900'>
+										{item.dataName}
+									</dt>
+									<dd className='mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0'>
+										{item.dataValue}
+									</dd>
+								</div>
+							))}
 						</dl>
 					</div>
 				</div>
