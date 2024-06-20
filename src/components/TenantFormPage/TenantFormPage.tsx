@@ -3,7 +3,7 @@ import React from 'react';
 type TInputType = 'email' | 'text' | 'tel' | 'radio';
 type TAutoComplete = 'name' | 'email' | 'tel';
 
-interface ITenantFormPage {
+interface IBaseFormPage {
 	header: string;
 	subheader?: string;
 	labelText: string;
@@ -18,6 +18,18 @@ interface ITenantFormPage {
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	textTransform?: (text: string) => string;
 }
+
+interface IFieldsetProps {
+	fieldset: true;
+	fieldsetLegend: string;
+	fieldsetData: string[];
+}
+
+interface INonFieldsetProps {
+	fieldset?: false;
+}
+
+type ITenantFormPage = IBaseFormPage & (IFieldsetProps | INonFieldsetProps);
 
 const TenantFormPage: React.FC<ITenantFormPage> = ({
 	header,
