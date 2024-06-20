@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { TSalary, useFormStore } from '@/store/useFormStore';
 
+import TenantFormPage from '@/components/TenantFormPage';
+
 const TenantForm = () => {
 	let page = useFormStore(state => state.page);
 	const { fullName, email, phoneNumber, salary } = useFormStore(state => state.formData);
@@ -32,6 +34,11 @@ const TenantForm = () => {
 		setPage((page -= 1));
 	};
 
+	// Transforms text for the salary indication radio buttons
+	const transformSalaryText = (text: string) => {
+		return text.replace(/-/g, ' - ').replace(/>/g, 'Mehr als ') + '€';
+	};
+
 	useEffect(() => {
 		//Validate current page inputs
 		if (page === 0) {
@@ -49,156 +56,70 @@ const TenantForm = () => {
 		<form className='flex flex-col space-y-12 ring-1 p-12 ring-gray-200 rounded-3xl min-h-208 max-h-screen justify-between'>
 			{/* Code block for name page */}
 			{page === 0 && (
-				<div className='pb-12'>
-					<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>
-						Wie lautet Ihr vollständiger Name?
-					</h2>
-					<div className='mt-16 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
-						<div className='sm:col-span-4'>
-							<label
-								htmlFor='fullName'
-								className='block text-sm font-normal leading-tight text-stone-600 dark:text-neutral-300'>
-								Name eingeben
-							</label>
-							<div className='mt-2'>
-								<div className='flex rounded-xl shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md'>
-									<input
-										type='text'
-										name='fullName'
-										id='fullName'
-										required
-										onChange={handleChange}
-										value={fullName}
-										autoComplete='fullName'
-										className='block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6'
-										placeholder='z.B. Maxima Mustermann'
-									/>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<TenantFormPage
+					header='Wie lautet Ihr vollständiger Name?'
+					labelText='Name eingeben'
+					inputId='fullName'
+					inputValue={fullName}
+					placeholder='z.B. Maxima Mustermann'
+					inputType='text'
+					autoCompleteType='name'
+					onChange={handleChange}
+				/>
 			)}
 
 			{/* Code block for email page */}
 			{page === 1 && (
-				<div className='pb-12'>
-					<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>
-						Wie lautet Ihre E-Mail Adresse?
-					</h2>
-					<p className='mt-4 text-base md:text-lg leading-6 text-gray-600'>
-						Verwenden Sie eine aktive Adresse, an der sie E-Mails empfangen können.
-					</p>
-					<div className='mt-16 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
-						<div className='sm:col-span-4'>
-							<label
-								htmlFor='email'
-								className='block text-sm font-normal leading-tight text-stone-600 dark:text-neutral-300'>
-								E-Mail eingeben
-							</label>
-							<div className='mt-2'>
-								<div className='flex rounded-xl shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md'>
-									<input
-										type='email'
-										name='email'
-										id='email'
-										value={email}
-										required
-										onChange={handleChange}
-										autoComplete='email'
-										className='block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6'
-										placeholder='z.B. M.Mustermann@gmail.com'
-									/>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<TenantFormPage
+					header='Wie lautet Ihre E-Mail Adresse?'
+					subheader='Verwenden Sie eine aktive Adresse, an der sie E-Mails empfangen können.'
+					labelText='E-Mail eingeben'
+					inputId='email'
+					inputValue={email}
+					placeholder='z.B. M.Mustermann@gmail.com'
+					inputType='email'
+					autoCompleteType='email'
+					onChange={handleChange}
+				/>
 			)}
 
 			{/* Code block for phone number page */}
 			{page === 2 && (
-				<div className='pb-12'>
-					<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>
-						Wie lautet Ihre Telefonnummer?
-					</h2>
-					<div className='mt-16 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
-						<div className='sm:col-span-4'>
-							<label
-								htmlFor='phoneNumber'
-								className='block text-sm font-normal leading-tight text-stone-600 dark:text-neutral-300'>
-								Telefonnummer eingeben
-							</label>
-							<div className='mt-2'>
-								<div className='flex rounded-xl shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md'>
-									<input
-										type='tel'
-										name='phoneNumber'
-										id='phoneNumber'
-										required
-										onChange={handleChange}
-										value={phoneNumber}
-										autoComplete='phoneNumber'
-										className='block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6'
-										placeholder='z.B. 0151 XXXX XXX'
-									/>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<TenantFormPage
+					header='Wie lautet Ihre Telefonnummer?'
+					labelText='Telefonnummer eingeben'
+					inputId='phoneNumber'
+					inputValue={phoneNumber}
+					placeholder='z.B. 0151 XXXX XXX'
+					inputType='tel'
+					autoCompleteType='tel'
+					onChange={handleChange}
+				/>
 			)}
 
 			{/* Code block for salary indication page */}
 			{page === 3 && (
-				<div className='pb-12'>
-					<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>
-						Angaben zum Einkommen
-					</h2>
-					<p className='mt-4 text-base md:text-lg leading-6 text-gray-600'>
-						Wie hoch ist das ungefähre Nettoeinkommen für Ihren Haushalt?
-					</p>
-
-					<div className='mt-10 space-y-10'>
-						<fieldset>
-							<legend className='mt-6 block text-sm font-normal leading-tight text-stone-600 dark:text-neutral-300'>
-								Einkommen auswählen
-							</legend>
-
-							<div className='space-y-6'>
-								{salaryOptions.map((item, idx) => (
-									<div
-										key={`salaryItem-${idx}`}
-										className='mt-2 h-full w-full flex items-center justify-between gap-x-3 border-2 rounded-xl shadow-sm  hover:border-black focus-within:ring-2 focus:outline-none focus-within:ring-inset focus-within:ring-black sm:max-w-md px-3 py-1.5'>
-										<label
-											htmlFor={`salaryItem-${idx}`}
-											className='cursor-pointer w-full block text-sm font-medium leading-6 text-gray-900'>
-											{item.replace(/-/g, ' - ').replace(/>/g, 'Mehr als ')}€
-										</label>
-										<input
-											id={`salaryItem-${idx}`}
-											name='salary'
-											type='radio'
-											onChange={handleChange}
-											value={item}
-											checked={salary === item}
-											className='cursor-pointer h-4'
-										/>
-									</div>
-								))}
-							</div>
-						</fieldset>
-					</div>
-				</div>
+				<TenantFormPage
+					header='Angaben zum Einkommen'
+					subheader='Wie hoch ist das ungefähre Nettoeinkommen für Ihren Haushalt?'
+					inputId='salary'
+					inputValue={salary}
+					inputType='radio'
+					fieldset
+					fieldsetLegend='Einkommen auswählen'
+					fieldsetData={salaryOptions}
+					onChange={handleChange}
+					textTransform={transformSalaryText}
+				/>
 			)}
 
 			{/* Code block for summary page */}
 			{page === 4 && (
 				<div>
 					<div className='px-4 sm:px-0'>
-						<h3 className='text-base font-semibold leading-7 text-gray-900'>
+						<h2 className='text-base font-semibold leading-7 text-gray-900'>
 							Mieter/in Informationen
-						</h3>
+						</h2>
 						<p className='mt-1 max-w-2xl text-sm leading-6 text-gray-500'>
 							Persönliche Daten
 						</p>
@@ -234,7 +155,7 @@ const TenantForm = () => {
 									Gehaltsangabe
 								</dt>
 								<dd className='mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0'>
-									{salary.replace(/-/g, ' - ').replace(/>/g, 'Mehr als ')}€
+									{transformSalaryText(salary)}
 								</dd>
 							</div>
 						</dl>
