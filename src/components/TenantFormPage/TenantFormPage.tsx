@@ -6,7 +6,6 @@ type TAutoComplete = 'name' | 'email' | 'tel';
 interface IBaseFormPage {
 	header: string;
 	subheader?: string;
-	labelText: string;
 	inputId: string;
 	inputValue: string;
 	placeholder?: string;
@@ -23,10 +22,12 @@ interface IFieldsetProps {
 	fieldset: true;
 	fieldsetLegend: string;
 	fieldsetData: string[];
+	labelText?: string;
 }
 
 interface INonFieldsetProps {
 	fieldset?: false;
+	labelText: string;
 }
 
 type ITenantFormPage = IBaseFormPage & (IFieldsetProps | INonFieldsetProps);
