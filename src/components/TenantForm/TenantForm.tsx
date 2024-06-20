@@ -173,14 +173,14 @@ const TenantForm = () => {
 					<button
 						type='button'
 						onClick={prevPage}
-						className='text-sm font-semibold leading-6 text-gray-900'>
+						className='text-sm font-semibold leading-6 text-gray-900 dark:text-white'>
 						Zurück
 					</button>
 				)}
 				<button
 					type='submit'
 					disabled={!isPageValid}
-					className='rounded-2xl bg-black px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-stone-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400 disabled:bg-stone-500 disabled:cursor-not-allowed'>
+					className='rounded-2xl bg-black dark:bg-white px-4 py-2 text-sm font-semibold text-white dark:text-black shadow-sm hover:bg-stone-900 dark:hover:bg-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400 disabled:bg-stone-500 disabled:cursor-not-allowed'>
 					{page === 4 ? 'Absenden' : page === 3 ? 'Zusammenfassung' : 'Weiter'}
 				</button>
 			</div>
