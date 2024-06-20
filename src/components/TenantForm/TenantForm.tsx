@@ -72,7 +72,7 @@ const TenantForm = () => {
 
 	return (
 		<form
-			className='flex flex-col space-y-12 ring-1 p-12 ring-gray-200 rounded-3xl min-h-208 max-h-screen justify-between'
+			className='flex flex-col space-y-12 ring-1 p-12 ring-gray-200 rounded-3xl h-160 md:h-176 lg:h-192 xl:h-208 max-h-screen justify-between'
 			onSubmit={handleSubmit}>
 			{/* Code block for name page */}
 			{page === 0 && (
