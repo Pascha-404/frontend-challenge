@@ -53,7 +53,9 @@ const TenantFormPage: React.FC<ITenantFormPage> = ({
 				<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>{header}</h2>
 
 				{subheader && (
-					<p className='mt-4 text-base md:text-lg leading-6 text-gray-600'>{subheader}</p>
+					<p className='mt-4 text-base md:text-lg leading-6 text-gray-600 dark:text-gray-400'>
+						{subheader}
+					</p>
 				)}
 
 				<div className='mt-16 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
@@ -74,7 +76,7 @@ const TenantFormPage: React.FC<ITenantFormPage> = ({
 									onChange={onChange}
 									value={inputValue}
 									autoComplete={autoCompleteType}
-									className='block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-2 sm:text-sm sm:leading-6 focus:outline-none focus-within:ring-2 focus-within:ring-inset focus-within:ring-black rounded-xl'
+									className='block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-stone-400 focus:ring-2 sm:text-sm sm:leading-6 focus:outline-none focus-within:ring-2 focus-within:ring-inset focus-within:ring-black dark:focus-within:ring-white rounded-xl'
 									placeholder={placeholder}
 								/>
 							</div>
@@ -88,7 +90,9 @@ const TenantFormPage: React.FC<ITenantFormPage> = ({
 			<div className='pb-12'>
 				<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>{header}</h2>
 				{subheader && (
-					<p className='mt-4 text-base md:text-lg leading-6 text-gray-600'>{subheader}</p>
+					<p className='mt-4 text-base md:text-lg leading-6 text-gray-600 dark:text-gray-400'>
+						{subheader}
+					</p>
 				)}
 
 				<div className='mt-10 space-y-10'>
@@ -101,10 +105,10 @@ const TenantFormPage: React.FC<ITenantFormPage> = ({
 							{fieldsetData.map((item, idx) => (
 								<div
 									key={`${inputId}Item-${idx}`}
-									className='mt-2 h-full w-full flex items-center justify-between gap-x-3 border-2 rounded-xl shadow-sm  hover:border-black focus-within:ring-2 focus:outline-none focus-within:ring-inset focus-within:ring-black sm:max-w-md px-3 py-1.5'>
+									className='mt-2 h-full w-full flex items-center justify-between gap-x-3 border-2 dark:hover:ring-2 dark:hover:ring-slate-200 rounded-xl shadow-sm  hover:border-black dark:hover:border-white focus-within:ring-2 focus:outline-none focus-within:ring-inset focus-within:ring-black sm:max-w-md px-3 py-1.5'>
 									<label
 										htmlFor={`${inputId}Item-${idx}`}
-										className='cursor-pointer w-full block text-sm font-medium leading-6 text-gray-900'>
+										className='cursor-pointer w-full block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100'>
 										{textTransform(item)}
 									</label>
 									<input
