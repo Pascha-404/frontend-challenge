@@ -259,7 +259,7 @@ const TenantForm = () => {
 					onClick={nextPage}
 					type='button'
 					disabled={!isPageValid}
-					className='rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-stone-500 disabled:cursor-not-allowed'>
+					className='rounded-2xl bg-black px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-stone-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400 disabled:bg-stone-500 disabled:cursor-not-allowed'>
 					{page === 4 ? 'Absenden' : page === 3 ? 'Zusammenfassung' : 'Weiter'}
 				</button>
 			</div>
