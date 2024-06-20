@@ -72,11 +72,12 @@ const TenantForm = () => {
 
 	return (
 		<form
-			className='flex flex-col space-y-12 ring-1 p-12 ring-gray-200 rounded-3xl h-160 md:h-176 lg:h-192 xl:h-208 max-h-screen justify-between'
+			className='flex flex-col ring-1 p-8 sm:p-10 md:p-12 lg:p-14 xl:p-16 ring-gray-200 rounded-3xl h-192 md:h-208 max-h-screen justify-between'
 			onSubmit={handleSubmit}>
 			{/* Code block for name page */}
 			{page === 0 && (
 				<TenantFormPage
+					className='mt-12'
 					header='Wie lautet Ihr vollständiger Name?'
 					labelText='Name eingeben'
 					inputId='fullName'
@@ -91,6 +92,7 @@ const TenantForm = () => {
 			{/* Code block for email page */}
 			{page === 1 && (
 				<TenantFormPage
+					className='mt-12'
 					header='Wie lautet Ihre E-Mail Adresse?'
 					subheader='Verwenden Sie eine aktive Adresse, an der sie E-Mails empfangen können.'
 					labelText='E-Mail eingeben'
@@ -106,6 +108,7 @@ const TenantForm = () => {
 			{/* Code block for phone number page */}
 			{page === 2 && (
 				<TenantFormPage
+					className='mt-12'
 					header='Wie lautet Ihre Telefonnummer?'
 					labelText='Telefonnummer eingeben'
 					inputId='phoneNumber'
@@ -120,6 +123,7 @@ const TenantForm = () => {
 			{/* Code block for salary indication page */}
 			{page === 3 && (
 				<TenantFormPage
+					className='mt-12'
 					header='Angaben zum Einkommen'
 					subheader='Wie hoch ist das ungefähre Nettoeinkommen für Ihren Haushalt?'
 					inputId='salary'
@@ -165,7 +169,7 @@ const TenantForm = () => {
 
 			{/* Code block for buttons */}
 			<div
-				className={`w-full mt-6 flex items-center gap-x-6 ${
+				className={`w-full  flex items-center gap-x-6 mb-4 ${
 					page !== 0 ? 'justify-between' : 'justify-end'
 				}`}>
 				{/* Is not rendering when on page 0, to prevent falsie state value */}
