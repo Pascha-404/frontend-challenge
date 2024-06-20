@@ -39,6 +39,16 @@ const TenantForm = () => {
 		return text.replace(/-/g, ' - ').replace(/>/g, 'Mehr als ') + '€';
 	};
 
+	// Stops default submit behaviour
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		if (page === 4) {
+			alert('Data submitted');
+		} else {
+			nextPage();
+		}
+	};
+
 	useEffect(() => {
 		//Validate current page inputs
 		if (page === 0) {
@@ -53,7 +63,9 @@ const TenantForm = () => {
 	}, [fullName, email, phoneNumber, salary, page]);
 
 	return (
-		<form className='flex flex-col space-y-12 ring-1 p-12 ring-gray-200 rounded-3xl min-h-208 max-h-screen justify-between'>
+		<form
+			className='flex flex-col space-y-12 ring-1 p-12 ring-gray-200 rounded-3xl min-h-208 max-h-screen justify-between'
+			onSubmit={handleSubmit}>
 			{/* Code block for name page */}
 			{page === 0 && (
 				<TenantFormPage
@@ -175,8 +187,7 @@ const TenantForm = () => {
 					</button>
 				)}
 				<button
-					onClick={nextPage}
-					type='button'
+					type='submit'
 					disabled={!isPageValid}
 					className='rounded-2xl bg-black px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-stone-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400 disabled:bg-stone-500 disabled:cursor-not-allowed'>
 					{page === 4 ? 'Absenden' : page === 3 ? 'Zusammenfassung' : 'Weiter'}
