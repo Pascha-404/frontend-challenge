@@ -55,6 +55,7 @@ describe('TenantForm Component', () => {
 		expect(screen.queryByText('Zurück')).not.toBeInTheDocument();
 	});
 
+	// Test if the component switches to the next page on 'Weiter' button click
 	it('navigates to the next page when "Weiter" button is clicked', () => {
 		renderComponent({ fullName: 'Maxima Mustermann' });
 		const nextButton = screen.getByText('Weiter');
@@ -62,5 +63,14 @@ describe('TenantForm Component', () => {
 		expect(screen.getByLabelText('E-Mail eingeben')).toBeInTheDocument();
 		expect(screen.getByText('Zurück')).toBeInTheDocument();
 		expect(screen.getByText('Weiter')).toBeDisabled();
+	});
+
+	// Test if the component switches to the previous page on 'Zurück' button click
+	it('navigates to the previous page when "Zurück" button is clicked', () => {
+		renderComponent({ fullName: 'Maxima Mustermann' }, 1);
+		expect(screen.getByLabelText('E-Mail eingeben')).toBeInTheDocument();
+		const prevButton = screen.getByText('Zurück');
+		fireEvent.click(prevButton);
+		expect(screen.getByText('Wie lautet Ihr vollständiger Name?')).toBeInTheDocument();
 	});
 });
