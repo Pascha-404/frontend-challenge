@@ -24,4 +24,4 @@ const useFormStore = create<IFormState>()(set => ({
 }));
 
 export { useFormStore };
-export type { TSalary };
+export type { TSalary, IFormData };
