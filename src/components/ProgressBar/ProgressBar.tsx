@@ -54,3 +54,4 @@ const ProgressBar: React.FC<IProgressBarProps> = ({ maxSteps, step, className })
 };
 
 export default ProgressBar;
+export type { IProgressBarProps };
