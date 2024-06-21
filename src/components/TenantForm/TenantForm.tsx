@@ -73,10 +73,11 @@ const TenantForm = () => {
 
 	return (
 		<form
+			role='form'
 			className='flex flex-col ring-1 p-8 sm:p-10 md:p-12 lg:p-14 xl:p-16 ring-gray-200 rounded-3xl h-192 md:h-208 max-h-screen justify-between'
 			onSubmit={handleSubmit}>
 			<div>
-				<ProgressBar maxSteps={5} step={page} className='mt-3'/>
+				<ProgressBar maxSteps={5} step={page} className='mt-3' />
 
 				{/* Code block for name page */}
 				{page === 0 && (
