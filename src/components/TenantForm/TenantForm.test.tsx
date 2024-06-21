@@ -82,11 +82,13 @@ describe('TenantForm Component', () => {
 		expect(screen.getByText('Zurück')).toBeInTheDocument();
 	});
 
+	// Test if the salary page renders correctly
 	it('renders the form on the fourth page with salary options', () => {
 		renderComponent({}, 3);
 		expect(screen.getByText('Angaben zum Einkommen')).toBeInTheDocument();
 		expect(screen.getByText('Einkommen auswählen')).toBeInTheDocument();
 		expect(screen.getByText('Zurück')).toBeInTheDocument();
+		expect(screen.getByText('Zusammenfassung')).toBeInTheDocument();
 	});
 
 	// Test if the summary page renders correctly
@@ -109,5 +111,6 @@ describe('TenantForm Component', () => {
 		expect(screen.getByText('017712345')).toBeInTheDocument();
 		expect(screen.getByText('Gehaltsangabe')).toBeInTheDocument();
 		expect(screen.getByText('Mehr als 4000€')).toBeInTheDocument();
+		expect(screen.getByText('Absenden')).toBeInTheDocument();
 	});
 });
