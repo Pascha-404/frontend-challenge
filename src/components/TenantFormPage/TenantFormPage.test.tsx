@@ -44,5 +44,11 @@ describe('TenantFormPage Component', () => {
 		renderComponent();
 		expect(screen.getByText('Test Header')).toBeInTheDocument();
 		expect(screen.getByLabelText('Test Label')).toBeInTheDocument();
-	})
-})
+	});
+
+	// Test if the component correctly renders the subheader when provided
+	it('renders subheader when provided', () => {
+		renderComponent({ subheader: 'Test Subheader' });
+		expect(screen.getByText('Test Subheader')).toBeInTheDocument();
+	});
+});
