@@ -55,6 +55,14 @@ describe('TenantForm Component', () => {
 		expect(screen.queryByText('Zurück')).not.toBeInTheDocument();
 	});
 
+	// Test the handleChange function
+	it('calls handleChange and updates state correctly', () => {
+		renderComponent();
+		const nameInput = screen.getByLabelText('Name eingeben');
+		fireEvent.change(nameInput, { target: { value: 'Maxima Mustermann' } });
+		expect(nameInput).toHaveValue('Maxima Mustermann');
+	});
+
 	// Test if the component switches to the next page on 'Weiter' button click
 	it('navigates to the next page when "Weiter" button is clicked', () => {
 		renderComponent({ fullName: 'Maxima Mustermann' });
