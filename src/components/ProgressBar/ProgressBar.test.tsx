@@ -28,4 +28,18 @@ describe('ProgressBar Component', () => {
 		const steps = screen.getAllByRole('progressbar');
 		expect(steps).toHaveLength(maxSteps);
 	});
+
+	// Test if correct steps are highlighted
+	it('highlights the correct steps', () => {
+		const step = 2;
+		renderComponent({ step });
+		const steps = screen.getAllByRole('progressbar');
+		steps.forEach((stepElement, index) => {
+			if (step >= index) {
+				expect(stepElement).toHaveClass('bg-stone-900');
+			} else {
+				expect(stepElement).toHaveClass('bg-gray-300');
+			}
+		});
+	});
 });
