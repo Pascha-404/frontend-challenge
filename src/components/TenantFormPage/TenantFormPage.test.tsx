@@ -60,4 +60,13 @@ describe('TenantFormPage Component', () => {
 			expect(screen.getByText(option)).toBeInTheDocument()
 		);
 	});
+
+	// Test if onChange is called when input value changes
+	it('calls onChange when input value changes', () => {
+		const onChangeMock = jest.fn();
+		renderComponent({ onChange: onChangeMock });
+		const input = screen.getByLabelText('Test Label');
+		fireEvent.change(input, { target: { value: 'Test Value' } });
+		expect(onChangeMock).toHaveBeenCalledTimes(1);
+	});
 });
