@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { TSalary, useFormStore } from '@/store/useFormStore';
 
 import TenantFormPage from '@/components/TenantFormPage';
@@ -74,99 +75,134 @@ const TenantForm = () => {
 	return (
 		<form
 			role='form'
-			className='flex flex-col ring-1 p-8 sm:p-10 md:p-12 lg:p-14 xl:p-16 ring-gray-200 rounded-3xl h-192 md:h-208 max-h-screen justify-between'
+			className='flex flex-col ring-1 p-8 sm:p-10 md:p-12 lg:p-14 xl:p-16 ring-gray-200 rounded-3xl h-192 md:h-208 max-h-screen justify-between max-w-screen-xl'
 			onSubmit={handleSubmit}>
 			<div>
 				<ProgressBar maxSteps={5} step={page} className='mt-3' />
-
-				{/* Code block for name page */}
-				{page === 0 && (
-					<TenantFormPage
-						className='mt-12'
-						header='Wie lautet Ihr vollständiger Name?'
-						labelText='Name eingeben'
-						inputId='fullName'
-						inputValue={fullName}
-						placeholder='z.B. Maxima Mustermann'
-						inputType='text'
-						autoCompleteType='name'
-						onChange={handleChange}
-					/>
-				)}
-				{/* Code block for email page */}
-				{page === 1 && (
-					<TenantFormPage
-						className='mt-12'
-						header='Wie lautet Ihre E-Mail Adresse?'
-						subheader='Verwenden Sie eine aktive Adresse, an der sie E-Mails empfangen können.'
-						labelText='E-Mail eingeben'
-						inputId='email'
-						inputValue={email}
-						placeholder='z.B. M.Mustermann@gmail.com'
-						inputType='email'
-						autoCompleteType='email'
-						onChange={handleChange}
-					/>
-				)}
-				{/* Code block for phone number page */}
-				{page === 2 && (
-					<TenantFormPage
-						className='mt-12'
-						header='Wie lautet Ihre Telefonnummer?'
-						labelText='Telefonnummer eingeben'
-						inputId='phoneNumber'
-						inputValue={phoneNumber}
-						placeholder='z.B. 0151 XXXX XXX'
-						inputType='tel'
-						autoCompleteType='tel'
-						onChange={handleChange}
-					/>
-				)}
-				{/* Code block for salary indication page */}
-				{page === 3 && (
-					<TenantFormPage
-						className='mt-12'
-						header='Angaben zum Einkommen'
-						subheader='Wie hoch ist das ungefähre Nettoeinkommen für Ihren Haushalt?'
-						inputId='salary'
-						inputValue={salary}
-						inputType='radio'
-						fieldset
-						fieldsetLegend='Einkommen auswählen'
-						fieldsetData={salaryOptions}
-						onChange={handleChange}
-						textTransform={transformSalaryText}
-					/>
-				)}
-				{/* Code block for summary page */}
-				{page === 4 && (
-					<div className='mt-12'>
-						<div className='px-4 sm:px-0'>
-							<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>
-								Mieter/in Informationen
-							</h2>
-							<p className='mt-4 text-base md:text-lg leading-6 text-gray-600 dark:text-gray-400'>
-								Persönliche Daten
-							</p>
-						</div>
-						<div className='mt-6 border-t border-gray-100'>
-							<dl className='divide-y divide-gray-100'>
-								{summary.map((item, idx) => (
-									<div
-										key={`summaryItem-${idx}`}
-										className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-										<dt className='text-sm font-medium leading-6 text-gray-900 dark:text-neutral-300'>
-											{item.dataName}
-										</dt>
-										<dd className='mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-100 italic'>
-											{item.dataValue}
-										</dd>
-									</div>
-								))}
-							</dl>
-						</div>
-					</div>
-				)}
+				<AnimatePresence mode='wait'>
+					{/* Code block for name page */}
+					{page === 0 && (
+						<motion.div
+							className='mt-12'
+							key='page-0'
+							initial={{ opacity: 0, x: -50 }}
+							animate={{ opacity: 1, x: 0 }}
+							exit={{ opacity: 0, x: 50 }}
+							transition={{ duration: 0.3 }}>
+							<TenantFormPage
+								header='Wie lautet Ihr vollständiger Name?'
+								labelText='Name eingeben'
+								inputId='fullName'
+								inputValue={fullName}
+								placeholder='z.B. Maxima Mustermann'
+								inputType='text'
+								autoCompleteType='name'
+								onChange={handleChange}
+							/>
+						</motion.div>
+					)}
+					{/* Code block for email page */}
+					{page === 1 && (
+						<motion.div
+							className='mt-12'
+							key='page-1'
+							initial={{ opacity: 0, x: -50 }}
+							animate={{ opacity: 1, x: 0 }}
+							exit={{ opacity: 0, x: 50 }}
+							transition={{ duration: 0.3 }}>
+							<TenantFormPage
+								header='Wie lautet Ihre E-Mail Adresse?'
+								subheader='Verwenden Sie eine aktive Adresse, an der sie E-Mails empfangen können.'
+								labelText='E-Mail eingeben'
+								inputId='email'
+								inputValue={email}
+								placeholder='z.B. M.Mustermann@gmail.com'
+								inputType='email'
+								autoCompleteType='email'
+								onChange={handleChange}
+							/>
+						</motion.div>
+					)}
+					{/* Code block for phone number page */}
+					{page === 2 && (
+						<motion.div
+							className='mt-12'
+							key='page-2'
+							initial={{ opacity: 0, x: -50 }}
+							animate={{ opacity: 1, x: 0 }}
+							exit={{ opacity: 0, x: 50 }}
+							transition={{ duration: 0.3 }}>
+							<TenantFormPage
+								header='Wie lautet Ihre Telefonnummer?'
+								labelText='Telefonnummer eingeben'
+								inputId='phoneNumber'
+								inputValue={phoneNumber}
+								placeholder='z.B. 0151 XXXX XXX'
+								inputType='tel'
+								autoCompleteType='tel'
+								onChange={handleChange}
+							/>
+						</motion.div>
+					)}
+					{/* Code block for salary indication page */}
+					{page === 3 && (
+						<motion.div
+							className='mt-12'
+							key='page-3'
+							initial={{ opacity: 0, x: -50 }}
+							animate={{ opacity: 1, x: 0 }}
+							exit={{ opacity: 0, x: 50 }}
+							transition={{ duration: 0.3 }}>
+							<TenantFormPage
+								header='Angaben zum Einkommen'
+								subheader='Wie hoch ist das ungefähre Nettoeinkommen für Ihren Haushalt?'
+								inputId='salary'
+								inputValue={salary}
+								inputType='radio'
+								fieldset
+								fieldsetLegend='Einkommen auswählen'
+								fieldsetData={salaryOptions}
+								onChange={handleChange}
+								textTransform={transformSalaryText}
+							/>
+						</motion.div>
+					)}
+					{/* Code block for summary page */}
+					{page === 4 && (
+						<motion.div
+							className='mt-12'
+							key='page-4'
+							initial={{ opacity: 0, x: -50 }}
+							animate={{ opacity: 1, x: 0 }}
+							exit={{ opacity: 0, x: 50 }}
+							transition={{ duration: 0.3 }}>
+							<div className='px-4 sm:px-0'>
+								<h2 className='text-2xl md:text-3xl font-semibold dark:text-white'>
+									Mieter/in Informationen
+								</h2>
+								<p className='mt-4 text-base md:text-lg leading-6 text-gray-600 dark:text-gray-400'>
+									Persönliche Daten
+								</p>
+							</div>
+							<div className='mt-6 border-t border-gray-100'>
+								<dl className='divide-y divide-gray-100'>
+									{summary.map((item, idx) => (
+										<div
+											key={`summaryItem-${idx}`}
+											className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
+											<dt className='text-sm font-medium leading-6 text-gray-900 dark:text-neutral-300'>
+												{item.dataName}
+											</dt>
+											<dd className='mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-100 italic'>
+												{item.dataValue}
+											</dd>
+										</div>
+									))}
+								</dl>
+							</div>
+						</motion.div>
+					)}
+				</AnimatePresence>
 			</div>
 
 			{/* Code block for buttons */}
