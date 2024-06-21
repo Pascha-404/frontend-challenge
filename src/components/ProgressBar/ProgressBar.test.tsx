@@ -20,4 +20,12 @@ describe('ProgressBar Component', () => {
 		renderComponent();
 		expect(screen.getByTestId('progressbar')).toBeInTheDocument();
 	});
+
+	// Test if component renders the correct number of steps
+	it('displays the correct number of steps', () => {
+		const maxSteps = 3;
+		renderComponent({ maxSteps: maxSteps });
+		const steps = screen.getAllByRole('progressbar');
+		expect(steps).toHaveLength(maxSteps);
+	});
 });
