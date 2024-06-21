@@ -133,3 +133,4 @@ const TenantFormPage: React.FC<ITenantFormPage> = ({
 };
 
 export default TenantFormPage;
+export type { ITenantFormPage };
