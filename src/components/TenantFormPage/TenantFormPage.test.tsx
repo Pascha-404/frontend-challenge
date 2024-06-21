@@ -69,4 +69,18 @@ describe('TenantFormPage Component', () => {
 		fireEvent.change(input, { target: { value: 'Test Value' } });
 		expect(onChangeMock).toHaveBeenCalledTimes(1);
 	});
+
+	// Test if the textTransform function is applied correctly
+	it('applies textTransform function correctly', () => {
+		const fieldsetData = ['option-1', 'option-2'];
+		const textTransform = (text: string) => text.toUpperCase();
+		renderComponent({
+			fieldset: true,
+			fieldsetData: fieldsetData,
+			textTransform: textTransform,
+		});
+		fieldsetData.forEach(item =>
+			expect(screen.getByText(item.toUpperCase())).toBeInTheDocument()
+		);
+	});
 });
