@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import TenantFormPage, { ITenantFormPage } from './TenantFormPage';
 
 // Helper function to render the component with common props
