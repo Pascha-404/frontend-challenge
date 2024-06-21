@@ -4,7 +4,7 @@ type TInputType = 'email' | 'text' | 'tel' | 'radio';
 type TAutoComplete = 'name' | 'email' | 'tel';
 
 interface IBaseFormPage {
-	className: string;
+	className?: string;
 	header: string;
 	subheader?: string;
 	inputId: string;
@@ -34,7 +34,7 @@ interface INonFieldsetProps {
 type ITenantFormPage = IBaseFormPage & (IFieldsetProps | INonFieldsetProps);
 
 const TenantFormPage: React.FC<ITenantFormPage> = ({
-	className,
+	className = '',
 	header,
 	subheader,
 	labelText,
