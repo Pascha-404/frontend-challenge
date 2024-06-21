@@ -27,7 +27,7 @@ const renderComponent = (props: Partial<ITenantFormPage> = {}) => {
 		onChange: jest.fn(),
 		labelText: 'Test Label',
 		fieldset: true,
-		fieldsetLegend: 'Test legend',
+		fieldsetLegend: 'Test Legend',
 		fieldsetData: ['Option 1', 'Option 2'],
 	};
 
@@ -50,5 +50,14 @@ describe('TenantFormPage Component', () => {
 	it('renders subheader when provided', () => {
 		renderComponent({ subheader: 'Test Subheader' });
 		expect(screen.getByText('Test Subheader')).toBeInTheDocument();
+	});
+
+	// Test if the component correctly handles fieldset mode
+	it('renders fieldset mode with correct data', () => {
+		renderComponent({ fieldset: true });
+		expect(screen.getByText('Test Legend')).toBeInTheDocument();
+		['Option 1', 'Option 2'].map(option =>
+			expect(screen.getByText(option)).toBeInTheDocument()
+		);
 	});
 });
