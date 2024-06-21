@@ -82,6 +82,13 @@ describe('TenantForm Component', () => {
 		expect(screen.getByText('Zurück')).toBeInTheDocument();
 	});
 
+	it('renders the form on the fourth page with salary options', () => {
+		renderComponent({}, 3);
+		expect(screen.getByText('Angaben zum Einkommen')).toBeInTheDocument();
+		expect(screen.getByText('Einkommen auswählen')).toBeInTheDocument();
+		expect(screen.getByText('Zurück')).toBeInTheDocument();
+	});
+
 	// Test if the summary page renders correctly
 	it('renders the summary page correctly', () => {
 		renderComponent(
