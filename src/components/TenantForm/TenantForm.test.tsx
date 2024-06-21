@@ -74,6 +74,14 @@ describe('TenantForm Component', () => {
 		expect(screen.getByText('Wie lautet Ihr vollständiger Name?')).toBeInTheDocument();
 	});
 
+	// Test if the phoneNumber page renders correctly
+	it('renders the form on the third page with phone number', () => {
+		renderComponent({ phoneNumber: '123456789' }, 2);
+		expect(screen.getByText('Wie lautet Ihre Telefonnummer?')).toBeInTheDocument();
+		expect(screen.getByLabelText('Telefonnummer eingeben')).toHaveValue('123456789');
+		expect(screen.getByText('Zurück')).toBeInTheDocument();
+	});
+
 	// Test if the summary page renders correctly
 	it('renders the summary page correctly', () => {
 		renderComponent(
