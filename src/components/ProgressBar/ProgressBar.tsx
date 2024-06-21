@@ -17,10 +17,11 @@ const ProgressBar: React.FC<IProgressBarProps> = ({ maxSteps, step, className })
 	};
 
 	return (
-		<div className={className}>
+		<div className={className} data-testid='progressbar'>
 			<div className='flex items-center gap-x-1'>
 				{[...Array(maxSteps)].map((_, idx) => (
 					<div
+						key={`progressbar-step-${idx}`}
 						className={`${getColorClass(idx)} w-full h-2.5 transition duration-500`}
 						role='progressbar'
 						aria-valuenow={step + 1 * 20}
