@@ -73,4 +73,26 @@ describe('TenantForm Component', () => {
 		fireEvent.click(prevButton);
 		expect(screen.getByText('Wie lautet Ihr vollständiger Name?')).toBeInTheDocument();
 	});
+
+	// Test if the summary page renders correctly
+	it('renders the summary page correctly', () => {
+		renderComponent(
+			{
+				fullName: 'Maxima Mustermann',
+				email: 'M.Mustermann@example.com',
+				phoneNumber: '017712345',
+				salary: '>4000',
+			},
+			4
+		);
+		expect(screen.getByText('Mieter/in Informationen')).toBeInTheDocument();
+		expect(screen.getByText('Vollständiger Name')).toBeInTheDocument();
+		expect(screen.getByText('Maxima Mustermann')).toBeInTheDocument();
+		expect(screen.getByText('E-Mail Adresse')).toBeInTheDocument();
+		expect(screen.getByText('M.Mustermann@example.com')).toBeInTheDocument();
+		expect(screen.getByText('Telefonnummer')).toBeInTheDocument();
+		expect(screen.getByText('017712345')).toBeInTheDocument();
+		expect(screen.getByText('Gehaltsangabe')).toBeInTheDocument();
+		expect(screen.getByText('Mehr als 4000€')).toBeInTheDocument();
+	});
 });
