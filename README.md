@@ -1,5 +1,8 @@
+## Summary
 
-# Buena Frontend Challenge
+The goal is to build a multi-page application form for tenants registering with a property management company to book apartments. The form should include fields for full name, email, phone number, and salary indication with radio buttons. It should feature a progress indicator and a summary of all entered data on the last page. Stretch goals include animations, responsive design, neat design, state storage, and automated tests.
+
+# Frontend Challenge
 
 This project is a frontend application built with Next.js, TypeScript, and Tailwind CSS. It includes a multi-page form with animations and validation. The project uses Zustand for state management and Framer Motion for animations.
 
